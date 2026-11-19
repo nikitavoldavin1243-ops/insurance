@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Страхование: недвижимость, здоровье, ОСАГО</title>
+<style>
+  :root {
+    --primary: #1f5eff;
+    --primary-dark: #0c3fc4;
+    --accent: #ffb020;
+    --text: #1c2233;
+    --muted: #5b6478;
+    --bg: #f4f7ff;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    overflow: hidden;
+  }
+  .hero .photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+  }
+  .hero-content { position: relative; max-width: 720px; animation: fadeUp 1s ease both; }
+  .shield {
+    font-size: 64px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+  }
+  h1 { font-size: clamp(28px, 6vw, 48px); margin: 16px 0; line-height: 1.2; }
+  .subtitle { font-size: clamp(16px, 3vw, 20px); opacity: 0.95; margin-bottom: 28px; }
+
+  .btn-group { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 16px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+  .btn-insta { background: linear-gradient(45deg, #f09433, #dc2743, #bc1888); color: #fff; }
+  .btn-max { background: var(--white); color: var(--primary-dark); }
+  .pulse { animation: pulse 2s infinite; }
+
+  section { padding: 64px 20px; max-width: 1000px; margin: 0 auto; }
+  h2 { text-align: center; font-size: clamp(24px, 4vw, 34px); margin-bottom: 36px; }
+
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+  .card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 20px rgba(31,94,255,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 16px 36px rgba(31,94,255,0.18); }
+  .card .icon { font-size: 40px; margin-bottom: 12px; }
+  .card h3 { font-size: 20px; margin-bottom: 10px; }
+  .card p { color: var(--muted); margin-bottom: 14px; }
+  .card ul { padding-left: 18px; color: var(--muted); margin-bottom: 18px; }
+  .card li { margin-bottom: 6px; }
+  .card a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    background: var(--primary);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .advantages { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; text-align: center; }
+  .adv { background: var(--white); border-radius: 16px; padding: 24px 16px; }
+  .adv .num { font-size: 32px; font-weight: 800; color: var(--primary); }
+  .adv .label { color: var(--muted); font-size: 15px; }
+
+  .final {
+    text-align: center;
+    background: linear-gradient(135deg, var(--accent), #ff8a00);
+    color: var(--text);
+    border-radius: 24px;
+    padding: 48px 24px;
+    margin: 0 20px 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .final h2 { margin-bottom: 14px; }
+  .final p { margin-bottom: 24px; font-size: 18px; }
+  .final .btn-max { color: var(--text); }
+
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px 20px 40px; }
+
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+    70% { box-shadow: 0 0 0 16px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="photo" src="photo.jpg" alt="" onerror="this.remove()">
+  <div class="hero-content">
+    <div class="shield">🛡️</div>
+    <h1>Страхование, которое защищает то, что важно</h1>
+    <p class="subtitle">Недвижимость, здоровье и ОСАГО — оформим быстро, без лишней бумажной волокиты</p>
+    <div class="btn-group">
+      <a class="btn btn-insta" href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Заявка в Instagram</a>
+      <a class="btn btn-max pulse" href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Заявка в MAX</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2 class="reveal">Что мы страхуем</h2>
+  <div class="services">
+    <div class="card reveal">
+      <div class="icon">🏠</div>
+      <h3>Недвижимость</h3>
+      <p>Защита квартиры, дома и имущества от пожара, залива и других рисков.</p>
+      <ul>
+        <li>Квартира и дом</li>
+        <li>Отделка и имущество</li>
+        <li>Ипотечное страхование</li>
+      </ul>
+      <a href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Рассчитать</a>
+    </div>
+    <div class="card reveal">
+      <div class="icon">❤️</div>
+      <h3>Здоровье</h3>
+      <p>Медицинская защита для вас и близких, чтобы лечение не било по бюджету.</p>
+      <ul>
+        <li>Программы для семьи</li>
+        <li>Страхование для сотрудников</li>
+        <li>Программы для выезда за границу</li>
+      </ul>
+      <a href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Подобрать программу</a>
+    </div>
+    <div class="card reveal">
+      <div class="icon">🚗</div>
+      <h3>ОСАГО</h3>
+      <p>Полис для вашего автомобиля. Оформление онлайн, без очередей.</p>
+      <ul>
+        <li>Оформление за несколько минут</li>
+        <li>Помощь с выбором периода</li>
+        <li>Поддержка при страховом случае</li>
+      </ul>
+      <a href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">Оформить ОСАГО</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2 class="reveal">Почему выбирают нас</h2>
+  <div class="advantages">
+    <div class="adv reveal"><div class="num">24/7</div><div class="label">Работаем круглосуточно</div></div>
+    <div class="adv reveal"><div class="num">от 1 дня</div><div class="label">Срок оформления</div></div>
+  </div>
+</section>
+
+<div class="final reveal">
+  <h2>Получите расчёт за 5 минут</h2>
+  <p>Напишите нам в удобный мессенджер — подберём вариант под ваш запрос</p>
+  <div class="btn-group">
+    <a class="btn btn-insta" href="https://www.instagram.com/voldavina.m97/" target="_blank" rel="noopener">Instagram</a>
+    <a class="btn btn-max" href="https://max.ru/u/f9LHodD0cOK91Usn4qNexvQaseXHat5Ee0LxLkPMvZfDqTegomkxre1cH3o" target="_blank" rel="noopener">MAX</a>
+  </div>
+</div>
+
+<footer>
+  <p><a href="tel:+79829829875">+7 982 982-98-75</a></p>
+  <p>Условия страхования уточняйте в договоре. Стоимость и покрытие зависят от выбранной программы.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>
